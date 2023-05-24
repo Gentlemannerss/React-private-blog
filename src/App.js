@@ -22,16 +22,18 @@ function App() {
                 <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/login" element={<Login auth={isAuthenticated} setAuth={toggleIsAuthenticated} />} />
-                        <PrivateRoute
+                        {/*<PrivateRoute
                             path="/blogposts"
                             element={<BlogOverview />}
                             isAuthenticated={isAuthenticated}
-                        />
-                        <PrivateRoute
+                        />*/}
+                        <Route path="/blogposts" element={<PrivateRoute isAuthenticated={isAuthenticated}><BlogOverview/></PrivateRoute>}/>
+                        {/*<PrivateRoute
                             path="/blogposts/:blogId"
                             element={<BlogPost />}
                             isAuthenticated={isAuthenticated}
-                        />
+                        />*/}
+                        <Route path="/blogposts/:blogId" element={<PrivateRoute isAuthenticated={isAuthenticated}><BlogPost/></PrivateRoute>}/>
                         <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
         </div>
